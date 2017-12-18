@@ -38,7 +38,6 @@ public class HelloWorldServlet extends HttpServlet {
 
 
 
-//        out.println("<input type=\"text\" size=\"20\" name=\"txtUserName\" />");
 
 
 //      This method executes whenever the servlet is hit
@@ -51,10 +50,18 @@ public class HelloWorldServlet extends HttpServlet {
         out.println(docType +
                 "<html>\n" +
                 "<head><title>" + title + "</title></head>\n" +
+                "<body bgcolor = \"#3f51b5\">\n" +
                 "<h1 align = \"center\">" + title + "</h1>\n" +
                 "<h2 align = \"center\">" + hitCount + "</h2>\n" +
+                "</body>" +
                 "</html>"
-      );
+        );
+
+
+//        out.println("<input type=\"text\" size=\"20\" name=\"txtUserName\" />");
+//        out.println("<input type=\"submit\" value=\"Submit\" name=\"B1\" />");
+
 
     }
 }
+
