@@ -53,7 +53,6 @@
                 </div>
 
 
-                <%--<c:if test="${boolean_expression}"></c:if>--%>
 
             </form>
     </div>
