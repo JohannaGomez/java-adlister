@@ -10,21 +10,19 @@ import java.io.IOException;
 public class ViewProfileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-//        HttpSession session = request.getSession();
-//        session.removeAttribute("user");
-//        session.invalidate();
-//        request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
-
 
         // redirect if the user is not an admin
         HttpSession session = request.getSession();
         String user = (String) session.getAttribute("user");
 
         if (!("administrator".equals(session.getAttribute("user")))){
-            response.getWriter().println("<h1>" + user +  "please, log in first!</h1>");
             response.sendRedirect("/login");
+//            session.removeAttribute("user"); -- I don't need this lines for now (20 and 21) .. this is for a log out
+//            session.invalidate();
             return;
         }
         request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
+
+
     }
 }
