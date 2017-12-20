@@ -19,10 +19,10 @@ import java.util.List;
 public class AdsServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 //        request.getRequestDispatcher("/ads/index.jsp").forward(request, response);
-        List<Ad> ads = DaoFactory.getAdsDao().all();
-        request.setAttribute("ads", ads);
-        request.getRequestDispatcher("/ads/index.jsp")
-                .forward(request, response);
+
+        request.setAttribute("ads", DaoFactory.getAdsDao().all());
+        request.getRequestDispatcher("/ads/index.jsp").forward(request, response);
+
     }
 
 }
