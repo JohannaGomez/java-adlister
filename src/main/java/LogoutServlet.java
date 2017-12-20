@@ -6,23 +6,21 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "ViewProfileServlet", urlPatterns = "/profile")
-public class ViewProfileServlet extends HttpServlet {
+@WebServlet(name = "LogoutServlet", urlPatterns = "/logout")
+public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+//        When a user visits /logout, they should be logged out of your application and redirected to the login page.
 
-        // redirect if the user is not an admin
         HttpSession session = request.getSession();
         String user = (String) session.getAttribute("user");
 
-        if (!("administrator".equals(session.getAttribute("user")))){
-            response.sendRedirect("/login");
-            return;
-        }
-        request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
+        response.sendRedirect("/login");
+        session.removeAttribute("user");
+        session.invalidate();
 
-        response.getWriter().println("<h1>Hello, " + user +  "welcome back");
 
 
     }
 }
+

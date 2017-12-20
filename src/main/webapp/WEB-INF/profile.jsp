@@ -12,5 +12,7 @@
         <h1>Viewing your profile.</h1>
     </div>
 
+    <h1>${sessionScope.get("user")} Welcome back</h1>
+
 </body>
 </html>
