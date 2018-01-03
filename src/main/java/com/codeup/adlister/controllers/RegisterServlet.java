@@ -40,7 +40,24 @@ public class RegisterServlet extends HttpServlet {
         user.setEmail(email);
 
         DaoFactory.getUsersDao().insert(user);
-        response.sendRedirect("/profile");  // It's not taking me to the profile page... check!
+
+
+        boolean validAttempt = false;
+
+        if (DaoFactory.getUsersDao().findByUsername(user.getUsername()).getUsername().equals(username)){
+            if(user.getPassword().equals(password)){
+                validAttempt = true;
+            }
+        }
+
+        if (validAttempt) {
+            // TODO: store the logged in user object in the session, instead of just the username
+            request.getSession().setAttribute("user", username);
+            response.sendRedirect("/profile");
+        } else {
+            response.sendRedirect("/login");
+        }
+
 
     }
 }
