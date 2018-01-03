@@ -40,7 +40,7 @@ public class RegisterServlet extends HttpServlet {
         user.setEmail(email);
 
         DaoFactory.getUsersDao().insert(user);
-        response.sendRedirect("/profile");
+        response.sendRedirect("/profile");  // It's not taking me to the profile page... check!
 
     }
 }
