@@ -1,3 +1,5 @@
+CREATE DATABASE IF NOT EXISTS adlister_db;
+
 USE adlister_db;
 
 DROP TABLE IF EXISTS ads;
@@ -20,3 +22,7 @@ CREATE TABLE ads (
     FOREIGN KEY (user_id) REFERENCES users(id)
         ON DELETE CASCADE
 );
+
+INSERT INTO users (username, email, password)
+VALUES ('joe', 'joe@example.com', 'joe1');
+
