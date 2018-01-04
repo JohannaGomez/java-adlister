@@ -2,6 +2,7 @@ package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.User;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,9 +34,25 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
 
+        int numberOfRounds = 12;
+
+        // password registration using hash:
+        String hash = BCrypt.hashpw(password, BCrypt.gensalt(numberOfRounds));
+
         // create and save a new user
-        User user = new User(username, email, password);
+        User user = new User(username, email, hash);
         DaoFactory.getUsersDao().insert(user);
         response.sendRedirect("/login");
     }
 }
+
+
+//    int numberOfRounds = 12;
+
+// registration:
+//    String hash = BCrypt.hashpw("mypassword", BCrypt.gensalt(numberOfRounds));
+
+// login:
+//    boolean passwordsDoMatch = Bcrypt.checkpw("mypassword", hash);  (usertypedinaform, db)
+
+// System.out.println(passwordsDoMatch);
